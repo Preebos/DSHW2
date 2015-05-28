@@ -9,11 +9,28 @@
 // Postconditions: TODO
 
 #include <iostream>
+#include <time.h>
 
-// isUnique1 recursively returns true if the array contains no repeated elements,
+// three sorting algorithms to test with isUnique3:
+
+// input: array A (passed by reference by nature)
+void bubbleSort(unsigned int A[], unsigned int last) {
+	unsigned int temp;
+	for (int n = 0; n < last; n++) {
+		for (int k = 0; k < last; k++) {
+			if (A[k] > A[k + 1]) {
+				temp = A[k];
+				A[k] = A[k + 1];
+				A[k + 1] = temp;
+			}
+		}
+	}
+}
+
+// isUnique1 RECURSIVELY returns true if the array contains no repeated elements,
 // false if the array contains repeated elements
-bool isUnique1(unsigned int A[], int first, int last) {
-	if (first >= last) {
+bool isUnique1(unsigned int A[], unsigned int first, unsigned int last) {
+	if (first >= last) { // true if there is only one element
 		return true;
 	}
 	if (!isUnique1(A, first, last - 1)) {
@@ -25,35 +42,36 @@ bool isUnique1(unsigned int A[], int first, int last) {
 	return(A[first] != A[last]);
 }
 
+// isUnique2 ITERATIVELY returns true if the array contains no repeated elements,
+// false if the array contains repeated elements
+bool isUnique2(unsigned int A[], unsigned int first, unsigned int last){
+	if (first >= last) { // true if there is only one element
+		return true;
+	}
+	for (int i = first; i < last; i++) {
+		for (int j = i + 1; j <= last; j++) {
+			if (A[i] == A[j]) {
+				return false;
+			}
+		}
+	}
+	return true;
+}
 
-//bool isUnique2(A, first, last){
-//Input: Array A, first, last
-//Output :
-//	true if the array contains no repeated elements
-//		false if the array contains repeated elements
-//		if (first >= last)
-//			return true;
-//	for (int i = first; i < last; i++)
-//		for (int j = i + 1; j <= last; j++)
-//			if (A[i] == A[j])
-//				return false;
-//	return true;
-//}
-//
-//bool isUnique3(A, first, last){
-//Input: Array A, first, last
-//Output :
-//	true if the array contains no repeated elements
-//		false if the array contains repeated elements
-//		if (first >= last)
-//			return true;
-//	SORT(A, first, last);
-//	for (int i = first; i < last; i++)
-//		if (A[i] == A[i + 1])
-//			return false;
-//	return true;
-//}
-
+// isUnique2 SORTS the array then returns true if the array contains no repeated elements,
+// false if the array contains repeated elements
+bool isUnique3(unsigned int A[], unsigned int first, unsigned int last){
+	if (first >= last) { // true if there is only one element
+		return true;
+	}
+	//SORT(A, first, last); // TODO
+	for (int i = first; i < last; i++) {
+		if (A[i] == A[i + 1]) {
+			return false;
+		}
+	}
+	return true;
+}
 
 int main() {
 
