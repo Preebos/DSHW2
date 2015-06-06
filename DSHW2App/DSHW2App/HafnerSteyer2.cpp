@@ -41,7 +41,32 @@ void insertionSort(unsigned int A[], unsigned int last) {
 	}
 }
 
-void selectionSort() {
+void selectionSort(unsigned int A[], unsigned int last) {
+
+	unsigned int tmp;
+	int minIndex;
+
+	// Iterate through array
+	for (unsigned int i = 0; i < last; i++) {
+		
+		// Set initial current min
+		int minIndex = i;
+
+		// Find the min in the unsorted portion of the array
+		for (unsigned int j = i; j < last; j++) {
+			// Check next index for value lower than current min
+			if (A[j] < A[minIndex]) {
+				minIndex = j;
+			}
+
+		}
+
+		// Swap the current index with the next min value
+		tmp = A[minIndex];
+		A[minIndex] = A[i];
+		A[i] = tmp;
+
+	}
 
 }
 
@@ -60,8 +85,8 @@ bool isUnique1(unsigned int A[], unsigned int first, unsigned int last) {
 	return(A[first] != A[last]);
 }
 
-// isUnique2 ITERATIVELY returns true if the array contains no repeated elements,
-// false if the array contains repeated elements
+//// isUnique2 ITERATIVELY returns true if the array contains no repeated elements,
+//// false if the array contains repeated elements
 bool isUnique2(unsigned int A[], unsigned int first, unsigned int last){
 	if (first >= last) { // true if there is only one element
 		return true;
@@ -92,7 +117,7 @@ bool isUnique3(unsigned int A[], unsigned int first, unsigned int last){
 }
 
 int main() {
-
 	system("pause");
+
 	return 0;
 }
