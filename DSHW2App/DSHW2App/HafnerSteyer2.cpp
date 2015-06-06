@@ -27,6 +27,24 @@ void bubbleSort(unsigned int A[], unsigned int last) {
 	}
 }
 
+void insertionSort(unsigned int A[], unsigned int last) {
+	int n;
+	unsigned int temp;
+	for (unsigned int i = 1; i <= last; i++) {
+		n = i;
+		while (n > 0 && A[n] < A[n - 1]) {
+			temp = A[n];
+			A[n] = A[n - 1];
+			A[n - 1] = temp;
+			n--;
+		}
+	}
+}
+
+void selectionSort() {
+
+}
+
 // isUnique1 RECURSIVELY returns true if the array contains no repeated elements,
 // false if the array contains repeated elements
 bool isUnique1(unsigned int A[], unsigned int first, unsigned int last) {
@@ -64,7 +82,7 @@ bool isUnique3(unsigned int A[], unsigned int first, unsigned int last){
 	if (first >= last) { // true if there is only one element
 		return true;
 	}
-	//SORT(A, first, last); // TODO
+	//bubbleSort(A, last); // TODO
 	for (int i = first; i < last; i++) {
 		if (A[i] == A[i + 1]) {
 			return false;
