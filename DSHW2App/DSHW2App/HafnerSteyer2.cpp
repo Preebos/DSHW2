@@ -49,13 +49,13 @@ void selectionSort(unsigned int A[], unsigned int last) {
 	int minIndex;
 
 	// Iterate through array
-	for (unsigned int i = 0; i < last; i++) {
+	for (unsigned int i = 0; i <= last; i++) {
 		
 		// Set initial current min
 		int minIndex = i;
 
 		// Find the min in the unsorted portion of the array
-		for (unsigned int j = i; j < last; j++) {
+		for (unsigned int j = i; j <= last; j++) {
 			// Check next index for value lower than current min
 			if (A[j] < A[minIndex]) {
 				minIndex = j;
@@ -109,14 +109,14 @@ bool isUnique3(unsigned int A[], unsigned int first, unsigned int last, sort_typ
 	if (first >= last) { // true if there is only one element
 		return true;
 	}
-	if (st = BUBBLE) {
+	if (st == BUBBLE) {
 		bubbleSort(A, last);
 	}
-	else if (st = INSERTION) {
+	else if (st == INSERTION) {
 		insertionSort(A, last);
 	}
 	else {
-		//selectionSort();
+		selectionSort(A, last);
 	}
 	for (unsigned int i = first; i < last; i++) {
 		if (A[i] == A[i + 1]) {
@@ -131,40 +131,42 @@ int main() {
 	using std::cout;
 	using std::endl;
 
+	const int arraySize = 5000;
+
 	// create three arrays of size 100
-	unsigned int sortArray1[100], sortArray2[100], sortArray3[100];
+	unsigned int sortArray1[arraySize], sortArray2[arraySize], sortArray3[arraySize];
 	bool b1, b2, b3;
 	double time1, time2, time3;
 
 	// fill each array identically with random values
-	for (int n = 0; n < 100; n++) {
-		sortArray1[n] = rand() % 10000;
+	for (int n = 0; n < arraySize; n++) {
+		sortArray1[n] = rand() % 50000;
 		sortArray2[n] = sortArray1[n];
 		sortArray3[n] = sortArray1[n];
 	}
 
 	cout << "Running isUnique3 with three sorting algorithms..." << endl;
 	clock_t start = clock();
-	b1 = isUnique3(sortArray1, 0, 99, BUBBLE);
+	b1 = isUnique3(sortArray1, 0, arraySize - 1, BUBBLE);
 	clock_t end = clock();
 	time1 = (float)(end - start) * 1000.0 / (float)CLOCKS_PER_SEC;
 
 	start = clock();
-	b2 = isUnique3(sortArray1, 0, 99, INSERTION);
+	b2 = isUnique3(sortArray2, 0, arraySize - 1, INSERTION);
 	end = clock();
 	time2 = (float)(end - start) * 1000.0 / (float)CLOCKS_PER_SEC;
 
 	start = clock();
-	b3 = isUnique3(sortArray1, 0, 99, SELECTION);
+	b3 = isUnique3(sortArray3, 0, arraySize - 1, SELECTION);
 	end = clock();
 	time3 = (float)(end - start) * 1000.0 / (float)CLOCKS_PER_SEC;
 
-	cout << "Time taken to complete isUnique3 using various sorts:" << endl;
-	cout << "\tBubble Sort: " << time1 << " ms" << endl;
-	cout << "\tInsertion Sort: " << time2 << " ms" << endl;
-	cout << "\tSelection Sort: " << time3 << " ms" << endl;
+	cout << "\nTime taken to complete isUnique3 using various sorts, on array size " << arraySize << endl;
+	cout << "\tBubble Sort: returned " << b1 << " in " << time1 << " ms" << endl;
+	cout << "\tInsertion Sort: returned " << b2 << " in " << time2 << " ms" << endl;
+	cout << "\tSelection Sort: returned " << b3 << " in " << time3 << " ms" << endl;
 
 
-
+	system("pause");
 	return 0;
 }
