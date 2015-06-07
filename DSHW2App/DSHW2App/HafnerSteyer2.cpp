@@ -131,41 +131,60 @@ int main() {
 	using std::cout;
 	using std::endl;
 
-	const int arraySize = 5000;
+	const int arraySize = 29;
 
 	// create three arrays of size 100
 	unsigned int sortArray1[arraySize], sortArray2[arraySize], sortArray3[arraySize];
-	bool b1, b2, b3;
-	double time1, time2, time3;
+	unsigned int array1[arraySize], array2[arraySize];
+	bool sortb1, sortb2, sortb3, b1, b2;
+	double sortTime1, sortTime2, sortTime3, time1, time2;
 
 	// fill each array identically with random values
 	for (int n = 0; n < arraySize; n++) {
 		sortArray1[n] = rand() % 50000;
 		sortArray2[n] = sortArray1[n];
 		sortArray3[n] = sortArray1[n];
+		array1[n] = sortArray1[n];
+		array2[n] = sortArray1[n];
 	}
 
-	cout << "Running isUnique3 with three sorting algorithms..." << endl;
+	cout << "**** PART 1 ****" << endl << endl;
+
 	clock_t start = clock();
-	b1 = isUnique3(sortArray1, 0, arraySize - 1, BUBBLE);
+	sortb1 = isUnique3(sortArray1, 0, arraySize - 1, BUBBLE);
 	clock_t end = clock();
+	sortTime1 = (float)(end - start) * 1000.0 / (float)CLOCKS_PER_SEC;
+
+	start = clock();
+	sortb2 = isUnique3(sortArray2, 0, arraySize - 1, INSERTION);
+	end = clock();
+	sortTime2 = (float)(end - start) * 1000.0 / (float)CLOCKS_PER_SEC;
+
+	start = clock();
+	sortb3 = isUnique3(sortArray3, 0, arraySize - 1, SELECTION);
+	end = clock();
+	sortTime3 = (float)(end - start) * 1000.0 / (float)CLOCKS_PER_SEC;
+
+	cout << "\nTime taken to complete isUnique3 using various sorts, on array size " << arraySize << endl;
+	cout << "\tBubble Sort: returned " << sortb1 << " in " << sortTime1 << " ms" << endl;
+	cout << "\tInsertion Sort: returned " << sortb2 << " in " << sortTime2 << " ms" << endl;
+	cout << "\tSelection Sort: returned " << sortb3 << " in " << sortTime3 << " ms" << endl << endl;
+
+	system("pause");
+	cout << endl << "**** PART 2 ****" << endl << endl;
+
+	start = clock();
+	b1 = isUnique1(array1, 0, arraySize - 1);
+	end = clock();
 	time1 = (float)(end - start) * 1000.0 / (float)CLOCKS_PER_SEC;
 
 	start = clock();
-	b2 = isUnique3(sortArray2, 0, arraySize - 1, INSERTION);
+	b2 = isUnique2(array1, 0, arraySize - 1);
 	end = clock();
 	time2 = (float)(end - start) * 1000.0 / (float)CLOCKS_PER_SEC;
 
-	start = clock();
-	b3 = isUnique3(sortArray3, 0, arraySize - 1, SELECTION);
-	end = clock();
-	time3 = (float)(end - start) * 1000.0 / (float)CLOCKS_PER_SEC;
-
-	cout << "\nTime taken to complete isUnique3 using various sorts, on array size " << arraySize << endl;
-	cout << "\tBubble Sort: returned " << b1 << " in " << time1 << " ms" << endl;
-	cout << "\tInsertion Sort: returned " << b2 << " in " << time2 << " ms" << endl;
-	cout << "\tSelection Sort: returned " << b3 << " in " << time3 << " ms" << endl;
-
+	cout << "\tisUnique1 returned " << sortb1 << " in " << time1 << " ms" << endl;
+	cout << "\tisUnique2 returned " << sortb2 << " in " << time2 << " ms" << endl << endl;
 
 	system("pause");
 	return 0;
