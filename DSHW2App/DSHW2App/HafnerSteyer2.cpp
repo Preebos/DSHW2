@@ -135,7 +135,7 @@ int main() {
 	using std::cout;
 	using std::endl;
 
-	const int arraySize = 20;
+	const int arraySize = 29;
 
 	// create three arrays of size 100
 	vector<unsigned int> sortArray;
