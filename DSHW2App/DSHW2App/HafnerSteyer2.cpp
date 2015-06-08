@@ -10,12 +10,15 @@
 
 #include <iostream>
 #include <time.h>
+#include <vector>
+
+using namespace std;
 
 // three sorting algorithms to test with isUnique3:
 enum sort_type { BUBBLE, INSERTION, SELECTION };
 
 // input: array A (passed by reference by nature), and the index of the last element
-void bubbleSort(unsigned int A[], unsigned int last) {
+void bubbleSort(vector<unsigned int> A, unsigned int last) {
 	unsigned int temp;
 	for (unsigned int n = 0; n < last; n++) {
 		for (unsigned int k = 0; k < last; k++) {
@@ -29,7 +32,7 @@ void bubbleSort(unsigned int A[], unsigned int last) {
 }
 
 // input: array A (passed by reference by nature), and the index of the last element
-void insertionSort(unsigned int A[], unsigned int last) {
+void insertionSort(vector<unsigned int> A, unsigned int last) {
 	int n;
 	unsigned int temp;
 	for (unsigned int i = 1; i <= last; i++) {
@@ -43,7 +46,7 @@ void insertionSort(unsigned int A[], unsigned int last) {
 	}
 }
 
-void selectionSort(unsigned int A[], unsigned int last) {
+void selectionSort(vector<unsigned int> A, unsigned int last) {
 
 	unsigned int tmp;
 	int minIndex;
@@ -52,7 +55,7 @@ void selectionSort(unsigned int A[], unsigned int last) {
 	for (unsigned int i = 0; i <= last; i++) {
 		
 		// Set initial current min
-		int minIndex = i;
+		minIndex = i;
 
 		// Find the min in the unsorted portion of the array
 		for (unsigned int j = i; j <= last; j++) {
@@ -74,7 +77,7 @@ void selectionSort(unsigned int A[], unsigned int last) {
 
 // isUnique1 RECURSIVELY returns true if the array contains no repeated elements,
 // false if the array contains repeated elements
-bool isUnique1(unsigned int A[], unsigned int first, unsigned int last) {
+bool isUnique1(vector<unsigned int> A, unsigned int first, unsigned int last) {
 	if (first >= last) { // true if there is only one element
 		return true;
 	}
@@ -89,7 +92,7 @@ bool isUnique1(unsigned int A[], unsigned int first, unsigned int last) {
 
 //// isUnique2 ITERATIVELY returns true if the array contains no repeated elements,
 //// false if the array contains repeated elements
-bool isUnique2(unsigned int A[], unsigned int first, unsigned int last){
+bool isUnique2(vector<unsigned int> A, unsigned int first, unsigned int last){
 	if (first >= last) { // true if there is only one element
 		return true;
 	}
@@ -105,7 +108,7 @@ bool isUnique2(unsigned int A[], unsigned int first, unsigned int last){
 
 // isUnique2 SORTS the array then returns true if the array contains no repeated elements,
 // false if the array contains repeated elements
-bool isUnique3(unsigned int A[], unsigned int first, unsigned int last, sort_type st){
+bool isUnique3(vector<unsigned int> A, unsigned int first, unsigned int last, sort_type st){
 	if (first >= last) { // true if there is only one element
 		return true;
 	}
@@ -131,37 +134,36 @@ int main() {
 	using std::cout;
 	using std::endl;
 
-	const int arraySize = 29;
+	const int arraySize = 20;
 
 	// create three arrays of size 100
-	unsigned int sortArray1[arraySize], sortArray2[arraySize], sortArray3[arraySize];
-	unsigned int array1[arraySize], array2[arraySize];
+	vector<unsigned int> sortArray;
 	bool sortb1, sortb2, sortb3, b1, b2;
 	double sortTime1, sortTime2, sortTime3, time1, time2;
 
 	// fill each array identically with random values
 	for (int n = 0; n < arraySize; n++) {
-		sortArray1[n] = rand() % 50000;
-		sortArray2[n] = sortArray1[n];
+		sortArray.push_back(rand() % 50000);
+		/*sortArray2[n] = sortArray1[n];
 		sortArray3[n] = sortArray1[n];
 		array1[n] = sortArray1[n];
-		array2[n] = sortArray1[n];
+		array2[n] = sortArray1[n];*/
 	}
 
 	cout << "**** PART 1 ****" << endl << endl;
 
 	clock_t start = clock();
-	sortb1 = isUnique3(sortArray1, 0, arraySize - 1, BUBBLE);
+	sortb1 = isUnique3(sortArray, 0, arraySize - 1, BUBBLE);
 	clock_t end = clock();
 	sortTime1 = (float)(end - start) * 1000.0 / (float)CLOCKS_PER_SEC;
 
 	start = clock();
-	sortb2 = isUnique3(sortArray2, 0, arraySize - 1, INSERTION);
+	sortb2 = isUnique3(sortArray, 0, arraySize - 1, INSERTION);
 	end = clock();
 	sortTime2 = (float)(end - start) * 1000.0 / (float)CLOCKS_PER_SEC;
 
 	start = clock();
-	sortb3 = isUnique3(sortArray3, 0, arraySize - 1, SELECTION);
+	sortb3 = isUnique3(sortArray, 0, arraySize - 1, SELECTION);
 	end = clock();
 	sortTime3 = (float)(end - start) * 1000.0 / (float)CLOCKS_PER_SEC;
 
@@ -174,12 +176,12 @@ int main() {
 	cout << endl << "**** PART 2 ****" << endl << endl;
 
 	start = clock();
-	b1 = isUnique1(array1, 0, arraySize - 1);
+	b1 = isUnique1(sortArray, 0, arraySize - 1);
 	end = clock();
 	time1 = (float)(end - start) * 1000.0 / (float)CLOCKS_PER_SEC;
 
 	start = clock();
-	b2 = isUnique2(array1, 0, arraySize - 1);
+	b2 = isUnique2(sortArray, 0, arraySize - 1);
 	end = clock();
 	time2 = (float)(end - start) * 1000.0 / (float)CLOCKS_PER_SEC;
 
@@ -187,5 +189,14 @@ int main() {
 	cout << "\tisUnique2 returned " << sortb2 << " in " << time2 << " ms" << endl << endl;
 
 	system("pause");
+	cout << endl << "**** PART 4 ****" << endl << endl;
+
+	vector<unsigned int> A;
+	int n = 0;
+
+	for (n; n < 100; n++) {
+		A.push_back(rand() % 10000);
+	}
+	
 	return 0;
 }
