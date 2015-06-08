@@ -75,6 +75,7 @@ void selectionSort(unsigned int A[], unsigned int last) {
 // isUnique1 RECURSIVELY returns true if the array contains no repeated elements,
 // false if the array contains repeated elements
 bool isUnique1(unsigned int A[], unsigned int first, unsigned int last) {
+	std::cout << first << "\t" << last << std::endl;
 	if (first >= last) { // true if there is only one element
 		return true;
 	}
@@ -84,6 +85,7 @@ bool isUnique1(unsigned int A[], unsigned int first, unsigned int last) {
 	if (!isUnique1(A, first + 1, last)) {
 		return false;
 	}
+	
 	return(A[first] != A[last]);
 }
 
@@ -131,7 +133,7 @@ int main() {
 	using std::cout;
 	using std::endl;
 
-	const int arraySize = 29;
+	const int arraySize = 5;
 
 	// create three arrays of size 100
 	unsigned int sortArray1[arraySize], sortArray2[arraySize], sortArray3[arraySize];
@@ -185,6 +187,13 @@ int main() {
 
 	cout << "\tisUnique1 returned " << sortb1 << " in " << time1 << " ms" << endl;
 	cout << "\tisUnique2 returned " << sortb2 << " in " << time2 << " ms" << endl << endl;
+
+
+
+
+
+
+
 
 	system("pause");
 	return 0;
