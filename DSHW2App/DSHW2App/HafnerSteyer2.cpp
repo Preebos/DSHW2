@@ -9,8 +9,8 @@
 // Postconditions: TODO
 
 #include <iostream>
+#include <iomanip>
 #include <time.h>
-#include <vector>
 
 using namespace std;
 
@@ -18,7 +18,7 @@ using namespace std;
 enum sort_type { BUBBLE, INSERTION, SELECTION };
 
 // input: array A (passed by reference by nature), and the index of the last element
-void bubbleSort(vector<unsigned int> A, unsigned int last) {
+void bubbleSort(unsigned int A[], unsigned int last) {
 	unsigned int temp;
 	for (unsigned int n = 0; n < last; n++) {
 		for (unsigned int k = 0; k < last; k++) {
@@ -32,7 +32,7 @@ void bubbleSort(vector<unsigned int> A, unsigned int last) {
 }
 
 // input: array A (passed by reference by nature), and the index of the last element
-void insertionSort(vector<unsigned int> A, unsigned int last) {
+void insertionSort(unsigned int A[], unsigned int last) {
 	int n;
 	unsigned int temp;
 	for (unsigned int i = 1; i <= last; i++) {
@@ -46,7 +46,7 @@ void insertionSort(vector<unsigned int> A, unsigned int last) {
 	}
 }
 
-void selectionSort(vector<unsigned int> A, unsigned int last) {
+void selectionSort(unsigned int A[], unsigned int last) {
 
 	unsigned int tmp;
 	int minIndex;
@@ -77,7 +77,7 @@ void selectionSort(vector<unsigned int> A, unsigned int last) {
 
 // isUnique1 RECURSIVELY returns true if the array contains no repeated elements,
 // false if the array contains repeated elements
-bool isUnique1(vector<unsigned int> A, unsigned int first, unsigned int last) {
+bool isUnique1(unsigned int A[], unsigned int first, unsigned int last) {
 	if (first >= last) { // true if there is only one element
 		return true;
 	}
@@ -87,13 +87,12 @@ bool isUnique1(vector<unsigned int> A, unsigned int first, unsigned int last) {
 	if (!isUnique1(A, first + 1, last)) {
 		return false;
 	}
-	
 	return(A[first] != A[last]);
 }
 
 //// isUnique2 ITERATIVELY returns true if the array contains no repeated elements,
 //// false if the array contains repeated elements
-bool isUnique2(vector<unsigned int> A, unsigned int first, unsigned int last){
+bool isUnique2(unsigned int A[], unsigned int first, unsigned int last){
 	if (first >= last) { // true if there is only one element
 		return true;
 	}
@@ -109,7 +108,7 @@ bool isUnique2(vector<unsigned int> A, unsigned int first, unsigned int last){
 
 // isUnique2 SORTS the array then returns true if the array contains no repeated elements,
 // false if the array contains repeated elements
-bool isUnique3(vector<unsigned int> A, unsigned int first, unsigned int last, sort_type st){
+bool isUnique3(unsigned int A[], unsigned int first, unsigned int last, sort_type st){
 	if (first >= last) { // true if there is only one element
 		return true;
 	}
@@ -135,76 +134,271 @@ int main() {
 	using std::cout;
 	using std::endl;
 
-	const int arraySize = 29;
+	const int arraySize = 50000;
+	clock_t start, end;
+	srand(time(NULL));
 
 	// create three arrays of size 100
-	vector<unsigned int> sortArray;
-	bool sortb1, sortb2, sortb3, b1, b2;
-	double sortTime1, sortTime2, sortTime3, time1, time2;
+	unsigned int sortArray1[arraySize];// , array1[arraySize], array2[arraySize]; //sortArray2[arraySize], sortArray3[arraySize];
+	bool b1;// , b2, b3;
+	double time1;// , time2, time3; //, sortTime2, sortTime3;
 
 	// fill each array identically with random values
 	for (int n = 0; n < arraySize; n++) {
-		sortArray.push_back(rand() % 50000);
-		/*sortArray2[n] = sortArray1[n];
-		sortArray3[n] = sortArray1[n];
-		array1[n] = sortArray1[n];
-		array2[n] = sortArray1[n];*/
+		sortArray1[n] = rand() % 10000000;
+		//sortArray2[n] = sortArray1[n];
+		//sortArray3[n] = sortArray1[n];
+		//array1[n] = sortArray1[n];
+		//array2[n] = sortArray1[n];
 	}
 
-	cout << "**** PART 1 ****" << endl << endl;
+	//cout << "**** PART 1 ****" << endl << endl;
 
-	clock_t start = clock();
-	sortb1 = isUnique3(sortArray, 0, arraySize - 1, BUBBLE);
-	clock_t end = clock();
-	sortTime1 = (float)(end - start) * 1000.0 / (float)CLOCKS_PER_SEC;
+	//start = clock();
+	//sortb1 = isUnique3(sortArray1, 0, arraySize - 1, BUBBLE);
+	//end = clock();
+	//sortTime1 = (float)(end - start) * 1000.0 / (float)CLOCKS_PER_SEC;
 
-	start = clock();
-	sortb2 = isUnique3(sortArray, 0, arraySize - 1, INSERTION);
-	end = clock();
-	sortTime2 = (float)(end - start) * 1000.0 / (float)CLOCKS_PER_SEC;
+	//start = clock();
+	//sortb2 = isUnique3(sortArray2, 0, arraySize - 1, INSERTION);
+	//end = clock();
+	//sortTime2 = (float)(end - start) * 1000.0 / (float)CLOCKS_PER_SEC;
 
-	start = clock();
-	sortb3 = isUnique3(sortArray, 0, arraySize - 1, SELECTION);
-	end = clock();
-	sortTime3 = (float)(end - start) * 1000.0 / (float)CLOCKS_PER_SEC;
+	//start = clock();
+	//sortb3 = isUnique3(sortArray3, 0, arraySize - 1, SELECTION);
+	//end = clock();
+	//sortTime3 = (float)(end - start) * 1000.0 / (float)CLOCKS_PER_SEC;
 
-	cout << "\nTime taken to complete isUnique3 using various sorts, on array size " << arraySize << endl;
-	cout << "\tBubble Sort: returned " << sortb1 << " in " << sortTime1 << " ms" << endl;
-	cout << "\tInsertion Sort: returned " << sortb2 << " in " << sortTime2 << " ms" << endl;
-	cout << "\tSelection Sort: returned " << sortb3 << " in " << sortTime3 << " ms" << endl << endl;
+	//cout << "\nTime taken to complete isUnique3 using various sorts, on array size " << arraySize << endl;
+	//cout << "\tBubble Sort: returned " << sortb1 << " in " << sortTime1 << " ms" << endl;
+	//cout << "\tInsertion Sort: returned " << sortb2 << " in " << sortTime2 << " ms" << endl;
+	//cout << "\tSelection Sort: returned " << sortb3 << " in " << sortTime3 << " ms" << endl << endl;
 
-	system("pause");
-	cout << endl << "**** PART 2 ****" << endl << endl;
+	//system("pause");
+	//cout << endl << "**** PART 2 ****" << endl << endl;
 
-	start = clock();
-	b1 = isUnique1(sortArray, 0, arraySize - 1);
-	end = clock();
-	time1 = (float)(end - start) * 1000.0 / (float)CLOCKS_PER_SEC;
+	//start = clock();
+	////b1 = isUnique1(array1, 0, arraySize - 1);
+	//b1 = false;
+	//end = clock();
+	//time1 = (float)(end - start) * 1000.0 / (float)CLOCKS_PER_SEC;
 
-	start = clock();
-	b2 = isUnique2(sortArray, 0, arraySize - 1);
-	end = clock();
-	time2 = (float)(end - start) * 1000.0 / (float)CLOCKS_PER_SEC;
+	//start = clock();
+	//b2 = isUnique2(array2, 0, arraySize - 1);
+	//end = clock();
+	//time2 = (float)(end - start) * 1000.0 / (float)CLOCKS_PER_SEC;
 
-	cout << "\tisUnique1 returned " << sortb1 << " in " << time1 << " ms" << endl;
-	cout << "\tisUnique2 returned " << sortb2 << " in " << time2 << " ms" << endl << endl;
+	//start = clock();
+	//b3 = isUnique3(sortArray1, 0, arraySize - 1, INSERTION);
+	//end = clock();
+	//time3 = (float)(end - start) * 1000.0 / (float)CLOCKS_PER_SEC;
+
+	////start = clock();
+	////b1 = isUnique2(sortArray1, 0, arraySize - 1);
+	////end = clock();
+	////time1 = (float)(end - start) * 1000.0 / (float)CLOCKS_PER_SEC;
+
+	//cout << "\tisUnique1 returned " << b1 << " in " << time1 << " ms" << endl;
+	//cout << "\tisUnique2 returned " << b2 << " in " << time2 << " ms" << endl;
+	//cout << "\tisUnique3 returned " << b3 << " in " << time3 << " ms" << endl << endl;
+
+	//system("pause");
+	//cout << endl << "**** PART 4 ****" << endl << endl;
+
+	//vector<unsigned int> A;
+	//vector<double> times;
+	//bool unique;
+	//int size = 100, oldSize = 0;
+
+	//for (int n = oldSize; n < size; n++) {
+	//	A.push_back(rand() % 10000);
+	//}
+
+	//start = clock();
+	////isUnique1(A, 0, size - 1);
+	//end = clock();
+	//times.push_back( (double)(end - start) * 1000.0 / (double)CLOCKS_PER_SEC );
+
+	//start = clock();
+	//unique = isUnique2(A, 0, size - 1);
+	//end = clock();
+	//times.push_back((double)(end - start) * 1000.0 / (double)CLOCKS_PER_SEC);
+
+	//start = clock();
+	//isUnique3(A, 0, size - 1, SELECTION);
+	//end = clock();
+	//times.push_back((double)(end - start) * 1000.0 / (double)CLOCKS_PER_SEC);
+
+	//cout << setw(8) << "size" << setw(12) << "isUnique1" << setw(12) << "isUnique2" << setw(12) << "isUnique3" << setw(12) << "is unique?" << endl;
+	//cout << setw(8) << "100" << setw(12) << times[0] << setw(12) << times[1] << setw(12) << times[2] << setw(12) << unique << endl;
 
 
+	//oldSize = size;
+	//size = 500; 
+	//for (int n = oldSize; n < size; n++) {
+	//	A.push_back(rand() % 10000);
+	//}
+
+	//start = clock();
+	////isUnique1(A, 0, size - 1);
+	//end = clock();
+	//times.push_back((double)(end - start) * 1000.0 / (double)CLOCKS_PER_SEC);
+
+	//start = clock();
+	//unique = isUnique2(A, 0, size - 1);
+	//end = clock();
+	//times.push_back((double)(end - start) * 1000.0 / (double)CLOCKS_PER_SEC);
+
+	//start = clock();
+	//isUnique3(A, 0, size - 1, SELECTION);
+	//end = clock();
+	//times.push_back((double)(end - start) * 1000.0 / (double)CLOCKS_PER_SEC);
+
+	//cout << setw(8) << "500" << setw(12) << times[3] << setw(12) << times[4] << setw(12) << times[5] << setw(12) << unique << endl;
 
 
+	//oldSize = size;
+	//size = 1000;
+	//for (int n = oldSize; n < size; n++) {
+	//	A.push_back(rand() % 10000);
+	//}
+
+	//start = clock();
+	////isUnique1(A, 0, size - 1);
+	//end = clock();
+	//times.push_back((double)(end - start) * 1000.0 / (double)CLOCKS_PER_SEC);
+
+	//start = clock();
+	//unique = isUnique2(A, 0, size - 1);
+	//end = clock();
+	//times.push_back((double)(end - start) * 1000.0 / (double)CLOCKS_PER_SEC);
+
+	//start = clock();
+	//isUnique3(A, 0, size - 1, SELECTION);
+	//end = clock();
+	//times.push_back((double)(end - start) * 1000.0 / (double)CLOCKS_PER_SEC);
+
+	//cout << setw(8) << "1000" << setw(12) << times[6] << setw(12) << times[7] << setw(12) << times[8] << setw(12) << unique << endl;
 
 
+	//oldSize = size;
+	//size = 2000;
+	//for (int n = oldSize; n < size; n++) {
+	//	A.push_back(rand() % 10000);
+	//}
+
+	//start = clock();
+	////isUnique1(A, 0, size - 1);
+	//end = clock();
+	//times.push_back((double)(end - start) * 1000.0 / (double)CLOCKS_PER_SEC);
+
+	//start = clock();
+	//unique = isUnique2(A, 0, size - 1);
+	//end = clock();
+	//times.push_back((double)(end - start) * 1000.0 / (double)CLOCKS_PER_SEC);
+
+	//start = clock();
+	//isUnique3(A, 0, size - 1, SELECTION);
+	//end = clock();
+	//times.push_back((double)(end - start) * 1000.0 / (double)CLOCKS_PER_SEC);
+
+	//cout << setw(8) << "2000" << setw(12) << times[9] << setw(12) << times[10] << setw(12) << times[11] << setw(12) << unique << endl;
 
 
-	system("pause");
-	cout << endl << "**** PART 4 ****" << endl << endl;
+	//oldSize = size;
+	//size = 3000;
+	//for (int n = oldSize; n < size; n++) {
+	//	A.push_back(rand() % 10000);
+	//}
 
-	vector<unsigned int> A;
-	int n = 0;
+	//start = clock();
+	////isUnique1(A, 0, size - 1);
+	//end = clock();
+	//times.push_back((double)(end - start) * 1000.0 / (double)CLOCKS_PER_SEC);
 
-	for (n; n < 100; n++) {
-		A.push_back(rand() % 10000);
-	}
+	//start = clock();
+	//unique = isUnique2(A, 0, size - 1);
+	//end = clock();
+	//times.push_back((double)(end - start) * 1000.0 / (double)CLOCKS_PER_SEC);
+
+	//start = clock();
+	//isUnique3(A, 0, size - 1, SELECTION);
+	//end = clock();
+	//times.push_back((double)(end - start) * 1000.0 / (double)CLOCKS_PER_SEC);
+
+	//cout << setw(8) << "3000" << setw(12) << times[12] << setw(12) << times[13] << setw(12) << times[14] << setw(12) << unique << endl;
+
+
+	//oldSize = size;
+	//size = 4000;
+	//for (int n = oldSize; n < size; n++) {
+	//	A.push_back(rand() % 10000);
+	//}
+
+	//start = clock();
+	////isUnique1(A, 0, size - 1);
+	//end = clock();
+	//times.push_back((double)(end - start) * 1000.0 / (double)CLOCKS_PER_SEC);
+
+	//start = clock();
+	//unique = isUnique2(A, 0, size - 1);
+	//end = clock();
+	//times.push_back((double)(end - start) * 1000.0 / (double)CLOCKS_PER_SEC);
+
+	//start = clock();
+	//isUnique3(A, 0, size - 1, SELECTION);
+	//end = clock();
+	//times.push_back((double)(end - start) * 1000.0 / (double)CLOCKS_PER_SEC);
+
+	//cout << setw(8) << "4000" << setw(12) << times[15] << setw(12) << times[16] << setw(12) << times[17] << setw(12) << unique << endl;
+	//
+
+	//oldSize = size;
+	//size = 5000;
+	//for (int n = oldSize; n < size; n++) {
+	//	A.push_back(rand() % 10000);
+	//}
+
+	//start = clock();
+	////isUnique1(A, 0, size - 1);
+	//end = clock();
+	//times.push_back((double)(end - start) * 1000.0 / (double)CLOCKS_PER_SEC);
+
+	//start = clock();
+	//unique = isUnique2(A, 0, size - 1);
+	//end = clock();
+	//times.push_back((double)(end - start) * 1000.0 / (double)CLOCKS_PER_SEC);
+
+	//start = clock();
+	//isUnique3(A, 0, size - 1, SELECTION);
+	//end = clock();
+	//times.push_back((double)(end - start) * 1000.0 / (double)CLOCKS_PER_SEC);
+
+	//cout << setw(8) << "5000" << setw(12) << times[18] << setw(12) << times[19] << setw(12) << times[20] << setw(12) << unique << endl;
+
+
+	//oldSize = size;
+	//size = 50000;
+	//for (int n = oldSize; n < size; n++) {
+	//	A.push_back(rand() % 10000);
+	//}
+
+	//start = clock();
+	////isUnique1(A, 0, size - 1);
+	//end = clock();
+	//times.push_back((double)(end - start) * 1000.0 / (double)CLOCKS_PER_SEC);
+
+	//start = clock();
+	//unique = isUnique2(A, 0, size - 1);
+	//end = clock();
+	//times.push_back((double)(end - start) * 1000.0 / (double)CLOCKS_PER_SEC);
+
+	//start = clock();
+	//isUnique3(A, 0, size - 1, SELECTION);
+	//end = clock();
+	//times.push_back((double)(end - start) * 1000.0 / (double)CLOCKS_PER_SEC);
+	//
+	//cout << setw(8) << "50000" << setw(12) << times[21] << setw(12) << times[22] << setw(12) << times[23] << setw(12) << unique << endl;
 	
 
 
