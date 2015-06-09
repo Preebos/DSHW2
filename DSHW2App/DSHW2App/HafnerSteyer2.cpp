@@ -206,5 +206,25 @@ int main() {
 		A.push_back(rand() % 10000);
 	}
 	
+
+
+
+
+
+	system("pause");
+	cout << endl << "**** Part 5 ****" << endl << endl;
+
+	int step = 512;
+
+
+
+
+
+
+
+
+
+
+
 	return 0;
 }
