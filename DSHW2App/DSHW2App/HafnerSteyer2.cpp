@@ -250,209 +250,6 @@ int main() {
 
 	// PART 4
 
-	/*cout << endl << "**** PART 4 ****" << endl << endl;
-
-	vector<unsigned int> A;
-	vector<double> times;
-	bool unique;
-	int size = 100, oldSize = 0;
-
-	for (int n = oldSize; n < size; n++) {
-		A.push_back(rand() % 10000);
-	}
-
-	start = clock();
-	//isUnique1(A, 0, size - 1);
-	end = clock();
-	times.push_back( (double)(end - start) * 1000.0 / (double)CLOCKS_PER_SEC );
-
-	start = clock();
-	unique = isUnique2(A, 0, size - 1);
-	end = clock();
-	times.push_back((double)(end - start) * 1000.0 / (double)CLOCKS_PER_SEC);
-
-	start = clock();
-	isUnique3(A, 0, size - 1, SELECTION);
-	end = clock();
-	times.push_back((double)(end - start) * 1000.0 / (double)CLOCKS_PER_SEC);
-
-	cout << setw(8) << "size" << setw(12) << "isUnique1" << setw(12) << "isUnique2" << setw(12) << "isUnique3" << setw(12) << "is unique?" << endl;
-	cout << setw(8) << "100" << setw(12) << times[0] << setw(12) << times[1] << setw(12) << times[2] << setw(12) << unique << endl;
-
-
-	oldSize = size;
-	size = 500; 
-	for (int n = oldSize; n < size; n++) {
-		A.push_back(rand() % 10000);
-	}
-
-	start = clock();
-	//isUnique1(A, 0, size - 1);
-	end = clock();
-	times.push_back((double)(end - start) * 1000.0 / (double)CLOCKS_PER_SEC);
-
-	start = clock();
-	unique = isUnique2(A, 0, size - 1);
-	end = clock();
-	times.push_back((double)(end - start) * 1000.0 / (double)CLOCKS_PER_SEC);
-
-	start = clock();
-	isUnique3(A, 0, size - 1, SELECTION);
-	end = clock();
-	times.push_back((double)(end - start) * 1000.0 / (double)CLOCKS_PER_SEC);
-
-	cout << setw(8) << "500" << setw(12) << times[3] << setw(12) << times[4] << setw(12) << times[5] << setw(12) << unique << endl;
-
-
-	oldSize = size;
-	size = 1000;
-	for (int n = oldSize; n < size; n++) {
-		A.push_back(rand() % 10000);
-	}
-
-	start = clock();
-	//isUnique1(A, 0, size - 1);
-	end = clock();
-	times.push_back((double)(end - start) * 1000.0 / (double)CLOCKS_PER_SEC);
-
-	start = clock();
-	unique = isUnique2(A, 0, size - 1);
-	end = clock();
-	times.push_back((double)(end - start) * 1000.0 / (double)CLOCKS_PER_SEC);
-
-	start = clock();
-	isUnique3(A, 0, size - 1, SELECTION);
-	end = clock();
-	times.push_back((double)(end - start) * 1000.0 / (double)CLOCKS_PER_SEC);
-
-	cout << setw(8) << "1000" << setw(12) << times[6] << setw(12) << times[7] << setw(12) << times[8] << setw(12) << unique << endl;
-
-
-	oldSize = size;
-	size = 2000;
-	for (int n = oldSize; n < size; n++) {
-		A.push_back(rand() % 10000);
-	}
-
-	start = clock();
-	//isUnique1(A, 0, size - 1);
-	end = clock();
-	times.push_back((double)(end - start) * 1000.0 / (double)CLOCKS_PER_SEC);
-
-	start = clock();
-	unique = isUnique2(A, 0, size - 1);
-	end = clock();
-	times.push_back((double)(end - start) * 1000.0 / (double)CLOCKS_PER_SEC);
-
-	start = clock();
-	isUnique3(A, 0, size - 1, SELECTION);
-	end = clock();
-	times.push_back((double)(end - start) * 1000.0 / (double)CLOCKS_PER_SEC);
-
-	cout << setw(8) << "2000" << setw(12) << times[9] << setw(12) << times[10] << setw(12) << times[11] << setw(12) << unique << endl;
-
-
-	oldSize = size;
-	size = 3000;
-	for (int n = oldSize; n < size; n++) {
-		A.push_back(rand() % 10000);
-	}
-
-	start = clock();
-	//isUnique1(A, 0, size - 1);
-	end = clock();
-	times.push_back((double)(end - start) * 1000.0 / (double)CLOCKS_PER_SEC);
-
-	start = clock();
-	unique = isUnique2(A, 0, size - 1);
-	end = clock();
-	times.push_back((double)(end - start) * 1000.0 / (double)CLOCKS_PER_SEC);
-
-	start = clock();
-	isUnique3(A, 0, size - 1, SELECTION);
-	end = clock();
-	times.push_back((double)(end - start) * 1000.0 / (double)CLOCKS_PER_SEC);
-
-	cout << setw(8) << "3000" << setw(12) << times[12] << setw(12) << times[13] << setw(12) << times[14] << setw(12) << unique << endl;
-
-
-	oldSize = size;
-	size = 4000;
-	for (int n = oldSize; n < size; n++) {
-		A.push_back(rand() % 10000);
-	}
-
-	start = clock();
-	//isUnique1(A, 0, size - 1);
-	end = clock();
-	times.push_back((double)(end - start) * 1000.0 / (double)CLOCKS_PER_SEC);
-
-	start = clock();
-	unique = isUnique2(A, 0, size - 1);
-	end = clock();
-	times.push_back((double)(end - start) * 1000.0 / (double)CLOCKS_PER_SEC);
-
-	start = clock();
-	isUnique3(A, 0, size - 1, SELECTION);
-	end = clock();
-	times.push_back((double)(end - start) * 1000.0 / (double)CLOCKS_PER_SEC);
-
-	cout << setw(8) << "4000" << setw(12) << times[15] << setw(12) << times[16] << setw(12) << times[17] << setw(12) << unique << endl;
-	
-
-	oldSize = size;
-	size = 5000;
-	for (int n = oldSize; n < size; n++) {
-		A.push_back(rand() % 10000);
-	}
-
-	start = clock();
-	//isUnique1(A, 0, size - 1);
-	end = clock();
-	times.push_back((double)(end - start) * 1000.0 / (double)CLOCKS_PER_SEC);
-
-	start = clock();
-	unique = isUnique2(A, 0, size - 1);
-	end = clock();
-	times.push_back((double)(end - start) * 1000.0 / (double)CLOCKS_PER_SEC);
-
-	start = clock();
-	isUnique3(A, 0, size - 1, SELECTION);
-	end = clock();
-	times.push_back((double)(end - start) * 1000.0 / (double)CLOCKS_PER_SEC);
-
-	cout << setw(8) << "5000" << setw(12) << times[18] << setw(12) << times[19] << setw(12) << times[20] << setw(12) << unique << endl;
-
-
-	oldSize = size;
-	size = 50000;
-	for (int n = oldSize; n < size; n++) {
-		A.push_back(rand() % 10000);
-	}
-
-	start = clock();
-	//isUnique1(A, 0, size - 1);
-	end = clock();
-	times.push_back((double)(end - start) * 1000.0 / (double)CLOCKS_PER_SEC);
-
-	start = clock();
-	unique = isUnique2(A, 0, size - 1);
-	end = clock();
-	times.push_back((double)(end - start) * 1000.0 / (double)CLOCKS_PER_SEC);
-
-	start = clock();
-	isUnique3(A, 0, size - 1, SELECTION);
-	end = clock();
-	times.push_back((double)(end - start) * 1000.0 / (double)CLOCKS_PER_SEC);
-	
-	cout << setw(8) << "50000" << setw(12) << times[21] << setw(12) << times[22] << setw(12) << times[23] << setw(12) << unique << endl;
-	
-
-	system("pause");
-	*/
-
-	// Evan's PART 4
-
 	unsigned int arr[5000];
 	double times[3][11];
 	int c = 0;
@@ -542,26 +339,56 @@ int main() {
 	}
 
 	system("pause");
-
+	
 
 	
 	
 
 
 	// PART 5
+	/*
+	cout << endl << "**** Part 5 ****" << endl << endl;
+	const unsigned ARR_SIZE = 180000;
+	unsigned int *arr = new unsigned int[ARR_SIZE];
 
-	/*cout << endl << "**** Part 5 ****" << endl << endl;
 
-	int step = 512;
+	for (int i = 0; i < ARR_SIZE; i++)
+		arr[i] = rand() % 10000000;
+	
+
+
+
+
+	start = clock();
+	b1 = isUnique1(arr, 0, ARR_SIZE - 1);
+	b1 = false;
+	end = clock();
+	time1 = (float)(end - start) * 1000.0 / (float)CLOCKS_PER_SEC;
+
+	for (int i = 0; i < ARR_SIZE; i++)
+		arr[i] = i;//rand() % 10000000;
+
+	start = clock();
+	b2 = isUnique2(arr, 0, ARR_SIZE - 1);
+	end = clock();
+	time2 = (float)(end - start) * 1000.0 / (float)CLOCKS_PER_SEC;
+
+	for (int i = 0; i < ARR_SIZE; i++)
+		arr[i] = rand() % 10000000;
+
+	start = clock();
+	b3 = isUnique3(arr, 0, ARR_SIZE - 1, INSERTION);
+	end = clock();
+	time3 = (float)(end - start) * 1000.0 / (float)CLOCKS_PER_SEC;
+
+	delete[] arr;
+
+	//cout << "Alg1\t" << time1 << endl;
+	cout << "Alg2\t" << "time:\t" << time2 << "\tresult:\t" << b2 << endl;
+	//cout << "Alg3\t" << "time:\t" << time3 << "\tresult:\t" << b3 << endl;
+
+	system("pause");
 	*/
-
-
-
-
-
-
-
-
 
 
 	return 0;
