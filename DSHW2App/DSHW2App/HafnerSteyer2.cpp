@@ -5,8 +5,8 @@
 // TA: Suryadip Chakraborty
 // Abstract: Assignment 2 (THe Element Uniqueness problem) implements three IsUnique algorithms
 //	and three sorting algorithms. The results are displayed as a table.
-// Preconditions: TODO
-// Postconditions: TODO
+// Preconditions: ?
+// Postconditions: ?
 
 #include <iostream>
 #include <iomanip>
