@@ -11,6 +11,7 @@
 #include <iostream>
 #include <iomanip>
 #include <time.h>
+#include <cstdlib>
 
 using namespace std;
 
